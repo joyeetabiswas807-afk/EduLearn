@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduLearn - Quality Education Portal</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f5f7ff;
+}
+
+nav{
+    background:#1e3c72;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 8%;
+    color:white;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+}
+
+nav ul li{
+    margin-left:25px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+}
+
+.hero{
+    height:90vh;
+    background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
+    url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.hero-content h1{
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    font-size:22px;
+    margin-bottom:30px;
+}
+
+.btn{
+    background:#ff9800;
+    color:white;
+    padding:15px 35px;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:18px;
+}
+
+.courses{
+    padding:70px 10%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:40px;
+    color:#1e3c72;
+}
+
+.course-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    color:#1e3c72;
+    margin-bottom:10px;
+}
+
+.card-content p{
+    color:#555;
+}
+
+.features{
+    background:white;
+    padding:70px 10%;
+}
+
+.feature-box{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.feature{
+    background:#f5f7ff;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.feature h3{
+    color:#1e3c72;
+    margin-bottom:15px;
+}
+
+.testimonials{
+    padding:70px 10%;
+}
+
+.testimonial-box{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.testimonial{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.testimonial h4{
+    color:#1e3c72;
+    margin-top:15px;
+}
+
+footer{
+    background:#1e3c72;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+/* ===== FLOATING CHATBOT CSS ===== */
+#chat-icon{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:#1e3c72;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+    cursor:pointer;
+    box-shadow:0 4px 15px rgba(0,0,0,.3);
+    z-index:9999;
+}
+
+#chatbot-container{
+    display:none;
+    position:fixed;
+    bottom:100px;
+    right:25px;
+    width:350px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    z-index:9999;
+    overflow:hidden;
+}
+
+#chat-header{
+    background:#1e3c72;
+    color:white;
+    padding:15px;
+    font-weight:bold;
+}
+
+#chat-messages{
+    height:370px;
+    overflow-y:auto;
+    padding:15px;
+}
+
+#chat-messages p{
+    margin-bottom:10px;
+    line-height:1.5;
+}
+
+#chat-input-area{
+    display:flex;
+    border-top:1px solid #ddd;
+}
+
+#userInput{
+    flex:1;
+    border:none;
+    padding:12px;
+    outline:none;
+    width:auto;
+    margin:0;
+}
+
+#chat-input-area button{
+    background:#ff9800;
+    border:none;
+    color:white;
+    padding:12px 18px;
+    cursor:pointer;
+}
+/* ===== END CHATBOT CSS ===== */
+
+@media(max-width:768px){
+    .hero-content h1{ font-size:40px; }
+    nav{ flex-direction:column; }
+    nav ul{ margin-top:10px; }
+    #chatbot-container{ width:90%; right:5%; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">EduLearn</div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Quality Education For Everyone</h1>
+        <p>Learn Anytime, Anywhere With Interactive Courses</p>
+        <a href="#" class="btn">Start Learning</a>
+    </div>
+</section>
+
+<section class="courses">
+    <h2 class="section-title">Popular Courses</h2>
+    <div class="course-container">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3">
+            <div class="card-content">
+                <h3>Web Development</h3>
+                <p>Learn HTML, CSS, JavaScript and modern frameworks.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c">
+            <div class="card-content">
+                <h3>Python Programming</h3>
+                <p>Master Python from beginner to advanced level.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72">
+            <div class="card-content">
+                <h3>Artificial Intelligence</h3>
+                <p>Explore Machine Learning and AI technologies.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <h2 class="section-title">Why Choose Us?</h2>
+    <div class="feature-box">
+        <div class="feature"><h3>📚 Expert Courses</h3><p>Industry-focused content created by professionals.</p></div>
+        <div class="feature"><h3>🎥 Video Lessons</h3><p>Interactive HD video lectures and tutorials.</p></div>
+        <div class="feature"><h3>🏆 Certificates</h3><p>Earn certificates after course completion.</p></div>
+        <div class="feature"><h3>📝 Online Quiz</h3><p>Test your skills through smart assessments.</p></div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <h2 class="section-title">Student Reviews</h2>
+    <div class="testimonial-box">
+        <div class="testimonial">
+            <p>"This platform helped me improve my coding skills and get internship opportunities."</p>
+            <h4>- Rahul Sharma</h4>
+        </div>
+        <div class="testimonial">
+            <p>"Excellent video lessons and quizzes. Learning became fun and engaging."</p>
+            <h4>- Priya Das</h4>
+        </div>
+        <div class="testimonial">
+            <p>"Best educational portal for engineering students."</p>
+            <h4>- Ankit Roy</h4>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 EduLearn | E-Learning Portal For Quality Education</p>
+</footer>
+
+<!-- FLOATING CHATBOT (inside body, after footer) -->
+<div id="chat-icon" onclick="toggleChat()">🤖</div>
+
+<div id="chatbot-container">
+    <div id="chat-header">
+        🎓 EduLearn AI Tutor
+        <span onclick="toggleChat()" style="float:right;cursor:pointer;">✖</span>
+    </div>
+    <div id="chat-messages"></div>
+    <div id="chat-input-area">
+        <input type="text" id="userInput" placeholder="Ask any course question...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+function toggleChat(){
+    const chat = document.getElementById("chatbot-container");
+    chat.style.display = (chat.style.display === "block") ? "none" : "block";
+}
+
+async function sendMessage(){
+    const input = document.getElementById("userInput");
+    const message = input.value.trim();
+    if(message === "") return;
+
+    const chatBox = document.getElementById("chat-messages");
+    chatBox.innerHTML += `<p><b>You:</b> ${message}</p>`;
+    input.value = "";
+
+    try{
+        const response = await fetch("http://127.0.0.1:5000/chat", {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({message:message})
+        });
+        const data = await response.json();
+        chatBox.innerHTML += `<p><b>🤖 AI:</b> ${data.reply}</p>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }catch(error){
+        chatBox.innerHTML += `<p style="color:red;">Cannot connect to AI server.</p>`;
+    }
+}
+
+document.getElementById("userInput").addEventListener("keypress", function(e){
+    if(e.key === "Enter") sendMessage();
+});
+</script>
+
+</body>
+</html>

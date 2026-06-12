@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Courses</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    .enrolled-msg {
+        display: inline-block;
+        margin-left: 10px;
+        color: green;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .btn:disabled {
+        background: #aaa;
+        cursor: not-allowed;
+    }
+</style>
+</head>
+<body>
+
+<nav>
+    <h2>Courses</h2>
+</nav>
+
+<div class="container">
+    <div class="course-grid">
+
+        <div class="card">
+            <h3>Python Programming</h3>
+            <p>Learn Python from beginner to advanced.</p>
+            <button class="btn" onclick="enroll(this, 'Python Programming')">Enroll</button>
+            <span class="enrolled-msg" style="display:none;">✅ Enrolled!</span>
+        </div>
+
+        <div class="card">
+            <h3>Web Development</h3>
+            <p>HTML, CSS, JavaScript and more.</p>
+            <button class="btn" onclick="enroll(this, 'Web Development')">Enroll</button>
+            <span class="enrolled-msg" style="display:none;">✅ Enrolled!</span>
+        </div>
+
+        <div class="card">
+            <h3>Artificial Intelligence</h3>
+            <p>Introduction to AI and Machine Learning.</p>
+            <button class="btn" onclick="enroll(this, 'Artificial Intelligence')">Enroll</button>
+            <span class="enrolled-msg" style="display:none;">✅ Enrolled!</span>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function enroll(button, courseName) {
+    // Disable button after click
+    button.disabled = true;
+    button.textContent = "Enrolled";
+
+    // Show success message next to button
+    const msg = button.nextElementSibling;
+    msg.style.display = "inline-block";
+
+    // Show confirmation and offer to go home
+    const goHome = confirm("🎉 Successfully enrolled in: " + courseName + "\n\nClick OK to go back to Home.");
+    if(goHome) {
+        window.location.href = "index.html";
+    }
+}
+</script>
+
+</body>
+</html>
