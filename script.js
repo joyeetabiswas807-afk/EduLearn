@@ -1,19 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("EduLearn Loaded Successfully");
-});
-
 async function sendMessage() {
 
     const input = document.getElementById("userInput");
     const message = input.value.trim();
 
-    if (message === "") return;
+    if (!message) return;
 
     const chatBox = document.getElementById("chat-messages");
 
-    chatBox.innerHTML += `
-        <div><b>You:</b> ${message}</div>
-    `;
+    chatBox.innerHTML += `<div><b>You:</b> ${message}</div>`;
 
     input.value = "";
 
@@ -34,9 +28,9 @@ async function sendMessage() {
 
         const data = await response.json();
 
-        console.log("Backend Response:", data);
+        console.log(data);
 
-        if (data.success) {
+        if (data.success === true) {
 
             chatBox.innerHTML += `
                 <div><b>AI:</b> ${data.reply}</div>
@@ -46,7 +40,7 @@ async function sendMessage() {
 
             chatBox.innerHTML += `
                 <div style="color:red;">
-                    Error: ${JSON.stringify(data.error)}
+                    ${JSON.stringify(data.error)}
                 </div>
             `;
         }
@@ -55,14 +49,12 @@ async function sendMessage() {
 
     } catch (error) {
 
-        console.error("Fetch Error:", error);
+        console.error(error);
 
         chatBox.innerHTML += `
             <div style="color:red;">
                 Cannot connect to backend.
             </div>
         `;
-
-        chatBox.scrollTop = chatBox.scrollHeight;
     }
 }
