@@ -4,13 +4,13 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import requests
 
-# Load .env file
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+
 print("API Key Loaded:", bool(OPENROUTER_API_KEY))
 
 SYSTEM_PROMPT = """
@@ -32,14 +32,14 @@ Rules:
 - Be friendly and educational.
 """
 
-# Home Route
+
 @app.route("/")
 def home():
     return jsonify({
         "status": "EduLearn Backend Running"
     })
 
-# Courses Route
+
 @app.route("/courses")
 def courses():
     return jsonify([
@@ -48,21 +48,29 @@ def courses():
         {"id": 3, "name": "AI Fundamentals"}
     ])
 
-# AI Chat Route
+
 @app.route("/chat", methods=["POST"])
 def chat():
 
-    data = request.get_json()
-
-    user_message = data.get("message", "")
-
     try:
+
+        if not OPENROUTER_API_KEY:
+            return jsonify({
+                "success": False,
+                "error": "OPENROUTER_API_KEY not found"
+            })
+
+        data = request.get_json()
+
+        user_message = data.get("message", "")
 
         response = requests.post(
             "https://openrouter.ai/api/v1/chat/completions",
             headers={
                 "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "HTTP-Referer": "https://edu-learn-weld.vercel.app",
+                "X-Title": "EduLearn"
             },
             json={
                 "model": "openai/gpt-4o-mini",
@@ -76,10 +84,21 @@ def chat():
                         "content": user_message
                     }
                 ]
-            }
+            },
+            timeout=60
         )
 
         result = response.json()
+
+        print("========== OPENROUTER RESPONSE ==========")
+        print(result)
+        print("========================================")
+
+        if response.status_code != 200:
+            return jsonify({
+                "success": False,
+                "error": result
+            })
 
         if "choices" not in result:
             return jsonify({
@@ -96,11 +115,17 @@ def chat():
 
     except Exception as e:
 
+        print("SERVER ERROR:", str(e))
+
         return jsonify({
             "success": False,
             "error": str(e)
         })
 
-# Start Server
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=False)
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000)),
+        debug=False
+    )
