@@ -7,7 +7,7 @@ async function sendMessage() {
     const input = document.getElementById("userInput");
     const message = input.value.trim();
 
-    if(message === "") return;
+    if (message === "") return;
 
     const chatBox = document.getElementById("chat-messages");
 
@@ -20,7 +20,7 @@ async function sendMessage() {
     try {
 
         const response = await fetch(
-            "http://127.0.0.1:5000/chat",
+            "https://edulearn-mo38.onrender.com/chat",
             {
                 method: "POST",
                 headers: {
@@ -40,7 +40,9 @@ async function sendMessage() {
 
         chatBox.scrollTop = chatBox.scrollHeight;
 
-    } catch(error) {
+    } catch (error) {
+
+        console.error(error);
 
         chatBox.innerHTML += `
             <div style="color:red;">
