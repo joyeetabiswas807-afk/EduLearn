@@ -34,20 +34,35 @@ async function sendMessage() {
 
         const data = await response.json();
 
-        chatBox.innerHTML += `
-            <div><b>AI:</b> ${data.reply}</div>
-        `;
+        console.log("Backend Response:", data);
+
+        if (data.success) {
+
+            chatBox.innerHTML += `
+                <div><b>AI:</b> ${data.reply}</div>
+            `;
+
+        } else {
+
+            chatBox.innerHTML += `
+                <div style="color:red;">
+                    Error: ${JSON.stringify(data.error)}
+                </div>
+            `;
+        }
 
         chatBox.scrollTop = chatBox.scrollHeight;
 
     } catch (error) {
 
-        console.error(error);
+        console.error("Fetch Error:", error);
 
         chatBox.innerHTML += `
             <div style="color:red;">
                 Cannot connect to backend.
             </div>
         `;
+
+        chatBox.scrollTop = chatBox.scrollHeight;
     }
 }
