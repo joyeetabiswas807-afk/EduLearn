@@ -1,7 +1,11 @@
 import os
+import sqlite3
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
+from werkzeug.security import generate_password_hash, check_password_hash
+
 import requests
 
 load_dotenv()
@@ -10,6 +14,11 @@ app = Flask(__name__)
 CORS(app)
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+
+def get_db_connection():
+    conn = sqlite3.connect("elearning.db")
+    conn.row_factory = sqlite3.Row
+    return conn
 
 print("API Key Loaded:", bool(OPENROUTER_API_KEY))
 
@@ -48,6 +57,113 @@ def courses():
         {"id": 3, "name": "AI Fundamentals"}
     ])
 
+@app.route("/register", methods=["POST"])
+def register():
+
+    try:
+        data = request.get_json()
+
+        name = data.get("name")
+        email = data.get("email")
+        password = data.get("password")
+
+        if not name or not email or not password:
+            return jsonify({
+                "success": False,
+                "message": "All fields are required"
+            }), 400
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        existing_user = cursor.execute(
+            "SELECT * FROM users WHERE email = ?",
+            (email,)
+        ).fetchone()
+
+        if existing_user:
+            conn.close()
+
+            return jsonify({
+                "success": False,
+                "message": "Email already registered"
+            }), 400
+
+        hashed_password = generate_password_hash(password)
+
+        cursor.execute(
+            "INSERT INTO users(name, email, password) VALUES(?,?,?)",
+            (name, email, hashed_password)
+        )
+
+        conn.commit()
+        conn.close()
+
+        return jsonify({
+            "success": True,
+            "message": "Registration successful"
+        })
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "message": str(e)
+        }), 500
+    
+
+    
+@app.route("/login", methods=["POST"])
+def login():
+
+    try:
+        data = request.get_json()
+
+        email = data.get("email")
+        password = data.get("password")
+
+        if not email or not password:
+            return jsonify({
+                "success": False,
+                "message": "Email and password are required"
+            }), 400
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        user = cursor.execute(
+            "SELECT * FROM users WHERE email = ?",
+            (email,)
+        ).fetchone()
+
+        conn.close()
+
+        if not user:
+            return jsonify({
+                "success": False,
+                "message": "Invalid email or password"
+            }), 401
+
+        if not check_password_hash(user["password"], password):
+            return jsonify({
+                "success": False,
+                "message": "Invalid email or password"
+            }), 401
+
+        return jsonify({
+            "success": True,
+            "message": "Login successful",
+            "user": {
+                "id": user["id"],
+                "name": user["name"],
+                "email": user["email"]
+            }
+        })
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "message": str(e)
+        }), 500
 
 @app.route("/chat", methods=["POST"])
 def chat():

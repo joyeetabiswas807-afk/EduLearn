@@ -1,3 +1,11 @@
+
+const userName = localStorage.getItem("userName");
+
+// Redirect to login if not logged in
+if (!userName) {
+    window.location.href = "login.html";
+}
+
 async function sendMessage() {
 
     const input = document.getElementById("userInput");
@@ -58,3 +66,9 @@ async function sendMessage() {
         `;
     }
 }
+
+function logout() {
+    localStorage.clear();
+    window.location.href = "login.html";
+}
+

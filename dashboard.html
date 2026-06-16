@@ -12,6 +12,7 @@
 <div>
 <a href="courses.html">Courses</a>
 <a href="index.html">Home</a>
+<a href="#" onclick="logout()">Logout</a>
 </div>
 
 </nav>
@@ -19,8 +20,8 @@
 <div class="container">
 
 <div class="card">
-<h2>Welcome Student</h2>
-<p>Track your learning progress.</p>
+<h2 id="welcomeText">Welcome Student</h2>
+<p id="emailText">Track your learning progress.</p>
 </div>
 
 <div class="card">
@@ -35,5 +36,31 @@
 
 </div>
 
+<script>
+
+// Protect dashboard
+const userName = localStorage.getItem("userName");
+const userEmail = localStorage.getItem("userEmail");
+
+if (!userName) {
+    window.location.href = "login.html";
+}
+
+// Show user info
+document.getElementById("welcomeText").innerHTML =
+    "Welcome " + userName;
+
+document.getElementById("emailText").innerHTML =
+    "Logged in as: " + userEmail;
+
+// Logout function
+function logout() {
+    localStorage.clear();
+    window.location.href = "login.html";
+}
+
+</script>
+
 </body>
 </html>
+

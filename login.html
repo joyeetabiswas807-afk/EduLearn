@@ -15,15 +15,27 @@
 
 <h2>Student Login</h2>
 
-<form action="dashboard.html">
+<form id="loginForm">
 
-<input type="email" placeholder="Email" required>
+<input
+type="email"
+id="email"
+placeholder="Email"
+required>
 
-<input type="password" placeholder="Password" required>
+<input
+type="password"
+id="password"
+placeholder="Password"
+required>
 
-<button class="btn">Login</button>
+<button type="submit" class="btn">
+Login
+</button>
 
 </form>
+
+<p id="message"></p>
 
 <p>
 Don't have an account?
@@ -33,5 +45,80 @@ Don't have an account?
 </div>
 </div>
 
+<script>
+
+const API_URL = "http://127.0.0.1:5000";
+
+document
+.getElementById("loginForm")
+.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const email =
+    document.getElementById("email").value;
+
+    const password =
+    document.getElementById("password").value;
+
+    try {
+
+        const response = await fetch(
+            `${API_URL}/login`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        const message =
+        document.getElementById("message");
+
+        if(result.success){
+
+            localStorage.setItem(
+                "userName",
+                result.user.name
+            );
+
+            localStorage.setItem(
+                "userEmail",
+                result.user.email
+            );
+
+            message.innerHTML =
+            "✅ Login successful!";
+
+            setTimeout(() => {
+                window.location.href =
+                "dashboard.html";
+            }, 1000);
+
+        } else {
+
+            message.innerHTML =
+            "❌ " + result.message;
+        }
+
+    } catch(error){
+
+        document.getElementById("message")
+        .innerHTML =
+        "❌ Unable to connect to server";
+    }
+
+});
+
+</script>
+
 </body>
 </html>
+

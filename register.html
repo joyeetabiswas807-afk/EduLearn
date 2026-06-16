@@ -15,22 +15,103 @@
 
 <h2>Create Account</h2>
 
-<form>
+<form id="registerForm">
 
-<input type="text" placeholder="Full Name" required>
+<input
+type="text"
+id="name"
+placeholder="Full Name"
+required>
 
-<input type="email" placeholder="Email" required>
+<input
+type="email"
+id="email"
+placeholder="Email"
+required>
 
-<input type="password" placeholder="Password" required>
+<input
+type="password"
+id="password"
+placeholder="Password"
+required>
 
-<button class="btn">
+<button type="submit" class="btn">
 Register
 </button>
 
 </form>
 
+<p id="message"></p>
+
 </div>
 </div>
+
+<script>
+
+const API_URL = "http://127.0.0.1:5000";
+
+document
+.getElementById("registerForm")
+.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const name =
+    document.getElementById("name").value;
+
+    const email =
+    document.getElementById("email").value;
+
+    const password =
+    document.getElementById("password").value;
+
+    try {
+
+        const response = await fetch(
+            `${API_URL}/register`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    password
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        const message =
+        document.getElementById("message");
+
+        if(result.success){
+
+            message.innerHTML =
+            "✅ Registration successful! Redirecting to login...";
+
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1500);
+
+        } else {
+
+            message.innerHTML =
+            "❌ " + result.message;
+        }
+
+    } catch(error){
+
+        document.getElementById("message")
+        .innerHTML =
+        "❌ Unable to connect to server";
+    }
+
+});
+
+</script>
 
 </body>
 </html>

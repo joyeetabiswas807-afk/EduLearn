@@ -1,73 +1,150 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Courses</title>
 <link rel="stylesheet" href="style.css">
-<style>
-    .enrolled-msg {
-        display: inline-block;
-        margin-left: 10px;
-        color: green;
-        font-weight: bold;
-        font-size: 14px;
-    }
 
-    .btn:disabled {
-        background: #aaa;
-        cursor: not-allowed;
-    }
+<style>
+.enrolled-msg{
+    display:inline-block;
+    margin-left:10px;
+    color:green;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.btn:disabled{
+    background:#aaa;
+    cursor:not-allowed;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 30px;
+}
+
+nav div{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logout-btn{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
 </style>
+
 </head>
 <body>
 
 <nav>
     <h2>Courses</h2>
+
+    <div>
+        <span id="welcomeUser"></span>
+        <a href="#" class="logout-btn" onclick="logout()">Logout</a>
+    </div>
 </nav>
 
 <div class="container">
+
     <div class="course-grid">
 
         <div class="card">
             <h3>Python Programming</h3>
             <p>Learn Python from beginner to advanced.</p>
-            <button class="btn" onclick="enroll(this, 'Python Programming')">Enroll</button>
-            <span class="enrolled-msg" style="display:none;">✅ Enrolled!</span>
+
+            <button
+                class="btn"
+                onclick="enroll(this,'Python Programming')">
+                Enroll
+            </button>
+
+            <span class="enrolled-msg" style="display:none;">
+                ✅ Enrolled!
+            </span>
         </div>
 
         <div class="card">
             <h3>Web Development</h3>
             <p>HTML, CSS, JavaScript and more.</p>
-            <button class="btn" onclick="enroll(this, 'Web Development')">Enroll</button>
-            <span class="enrolled-msg" style="display:none;">✅ Enrolled!</span>
+
+            <button
+                class="btn"
+                onclick="enroll(this,'Web Development')">
+                Enroll
+            </button>
+
+            <span class="enrolled-msg" style="display:none;">
+                ✅ Enrolled!
+            </span>
         </div>
 
         <div class="card">
             <h3>Artificial Intelligence</h3>
             <p>Introduction to AI and Machine Learning.</p>
-            <button class="btn" onclick="enroll(this, 'Artificial Intelligence')">Enroll</button>
-            <span class="enrolled-msg" style="display:none;">✅ Enrolled!</span>
+
+            <button
+                class="btn"
+                onclick="enroll(this,'Artificial Intelligence')">
+                Enroll
+            </button>
+
+            <span class="enrolled-msg" style="display:none;">
+                ✅ Enrolled!
+            </span>
         </div>
 
     </div>
+
 </div>
 
 <script>
+
+// Check login
+const userName = localStorage.getItem("userName");
+
+if (!userName) {
+    window.location.href = "login.html";
+}
+
+// Show username
+document.getElementById("welcomeUser").innerHTML =
+    "👋 " + userName;
+
+// Logout
+function logout() {
+    localStorage.clear();
+    window.location.href = "login.html";
+}
+
+// Enroll course
 function enroll(button, courseName) {
-    // Disable button after click
+
     button.disabled = true;
     button.textContent = "Enrolled";
 
-    // Show success message next to button
     const msg = button.nextElementSibling;
     msg.style.display = "inline-block";
 
-    // Show confirmation and offer to go home
-    const goHome = confirm("🎉 Successfully enrolled in: " + courseName + "\n\nClick OK to go back to Home.");
-    if(goHome) {
+    const goHome = confirm(
+        "🎉 Successfully enrolled in: " +
+        courseName +
+        "\n\nClick OK to go back to Home."
+    );
+
+    if (goHome) {
         window.location.href = "index.html";
     }
 }
+
 </script>
 
 </body>
 </html>
+
