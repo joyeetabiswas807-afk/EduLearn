@@ -3,61 +3,248 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Web Development Course</title>
+<title>Web Development Course - EduLearn</title>
 
 <style>
-body{
-    font-family:Arial,sans-serif;
-    background:#f5f7ff;
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
 }
-.container{
+
+body{
+    background:#f5f7ff;
+}
+
+nav{
+    background:#1e3c72;
+    color:white;
+    padding:15px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.hero{
+    text-align:center;
+    padding:80px 10%;
+    background:linear-gradient(rgba(30,60,114,.9),rgba(30,60,114,.9)),
+    url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');
+    background-size:cover;
+    color:white;
+}
+
+.hero h1{
+    font-size:50px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:20px;
     max-width:900px;
-    margin:50px auto;
+    margin:auto;
+    line-height:1.8;
+}
+
+.btn{
+    display:inline-block;
+    margin:15px 10px;
+    padding:15px 30px;
+    background:#ff9800;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+.section{
+    padding:70px 10%;
+}
+
+.section h2{
+    color:#1e3c72;
+    margin-bottom:25px;
+    text-align:center;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card h3{
+    color:#1e3c72;
+    margin-bottom:10px;
+}
+
+.testimonial{
     background:white;
     padding:30px;
     border-radius:15px;
     box-shadow:0 5px 15px rgba(0,0,0,.1);
+    text-align:center;
+    max-width:700px;
+    margin:auto;
 }
-h1{
-    color:#1e3c72;
+
+.cta{
+    text-align:center;
+    padding:70px 10%;
+    background:white;
 }
-.btn{
-    display:inline-block;
-    margin-top:20px;
-    background:#ff9800;
+
+footer{
+    background:#1e3c72;
     color:white;
-    padding:12px 25px;
-    text-decoration:none;
-    border-radius:8px;
+    text-align:center;
+    padding:20px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:35px;
+}
+
+.hero p{
+    font-size:16px;
+}
+
 }
 </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Web Development</h1>
+<nav>
+    <h2>EduLearn</h2>
 
-    <p>Learn how to build modern websites and web applications.</p>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="dashboard.html">Dashboard</a>
+    </div>
+</nav>
 
-    <h2>Topics Covered</h2>
-    <ul>
-        <li>HTML5</li>
-        <li>CSS3</li>
-        <li>JavaScript</li>
-        <li>Responsive Design</li>
-        <li>Bootstrap</li>
-        <li>React Basics</li>
-    </ul>
+<section class="hero">
 
-    <h2>Course Duration</h2>
-    <p>12 Weeks</p>
+    <h1>Learn Web Development</h1>
 
-    <h2>Certificate</h2>
-    <p>Certificate provided after successful completion.</p>
+    <p>
+        Build real projects and become career-ready.
+        From HTML and CSS to JavaScript, React, Node.js and Full Stack Development,
+        our hands-on learning path helps beginners and advanced learners master modern web development.
+    </p>
 
-    <a href="register.html" class="btn">Enroll Now</a>
-</div>
+    <a href="register.html" class="btn">Register Now</a>
+    <a href="#curriculum" class="btn">View Curriculum</a>
+
+</section>
+
+<section class="section">
+
+    <h2>Why Learn With Us?</h2>
+
+    <div class="features">
+
+        <div class="card">
+            <h3>📚 Structured Learning</h3>
+            <p>Step-by-step learning paths from beginner to expert.</p>
+        </div>
+
+        <div class="card">
+            <h3>💻 Real Projects</h3>
+            <p>Build 10+ practical projects for your portfolio.</p>
+        </div>
+
+        <div class="card">
+            <h3>⚡ Interactive Coding</h3>
+            <p>Practice coding with instant feedback and guidance.</p>
+        </div>
+
+        <div class="card">
+            <h3>🏆 Industry Certificates</h3>
+            <p>Earn certificates recognized by top companies.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="curriculum" class="section">
+
+    <h2>What You'll Learn</h2>
+
+    <div class="features">
+
+        <div class="card">
+            <h3>HTML5</h3>
+            <p>Build structured and accessible web pages.</p>
+        </div>
+
+        <div class="card">
+            <h3>CSS3</h3>
+            <p>Create responsive and attractive website designs.</p>
+        </div>
+
+        <div class="card">
+            <h3>JavaScript</h3>
+            <p>Add interactivity and dynamic functionality.</p>
+        </div>
+
+        <div class="card">
+            <h3>React & Node.js</h3>
+            <p>Develop powerful full-stack web applications.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="testimonial">
+        <p>
+            "This app helped me land my first web developer job!"
+        </p>
+
+        <h3>— Rohan K.</h3>
+    </div>
+
+</section>
+
+<section class="cta">
+
+    <h2>Perfect for Beginners, Students, and Career Changers</h2>
+
+    <p style="margin-top:15px;">
+        Start building websites, applications, and a strong developer portfolio today.
+    </p>
+
+    <a href="register.html" class="btn">
+        Enroll Now
+    </a>
+
+</section>
+
+<footer>
+    <p>© 2026 EduLearn | Web Development Learning Portal</p>
+</footer>
 
 </body>
 </html>
