@@ -3,61 +3,354 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Artificial Intelligence Course</title>
+<title>AI & Machine Learning - EduLearn</title>
 
 <style>
-body{
-    font-family:Arial,sans-serif;
-    background:#f5f7ff;
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
 }
-.container{
+
+body{
+    background:#f5f7ff;
+}
+
+nav{
+    background:#1e3c72;
+    color:white;
+    padding:15px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.hero{
+    text-align:center;
+    padding:80px 10%;
+    background:linear-gradient(rgba(30,60,114,.9),rgba(30,60,114,.9)),
+    url('https://images.unsplash.com/photo-1677442136019-21780ecad995');
+    background-size:cover;
+    background-position:center;
+    color:white;
+}
+
+.hero h1{
+    font-size:50px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:20px;
+    line-height:1.8;
     max-width:900px;
-    margin:50px auto;
+    margin:auto;
+}
+
+.btn{
+    display:inline-block;
+    margin:15px 10px;
+    padding:15px 30px;
+    background:#ff9800;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+.section{
+    padding:70px 10%;
+}
+
+.section h2{
+    text-align:center;
+    color:#1e3c72;
+    margin-bottom:30px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card h3{
+    color:#1e3c72;
+    margin-bottom:10px;
+}
+
+.testimonial{
+    max-width:700px;
+    margin:auto;
     background:white;
     padding:30px;
     border-radius:15px;
     box-shadow:0 5px 15px rgba(0,0,0,.1);
+    text-align:center;
 }
-h1{
-    color:#1e3c72;
+
+.cta{
+    text-align:center;
+    background:white;
+    padding:70px 10%;
 }
-.btn{
-    display:inline-block;
-    margin-top:20px;
-    background:#ff9800;
+
+footer{
+    background:#1e3c72;
     color:white;
-    padding:12px 25px;
-    text-decoration:none;
-    border-radius:8px;
+    text-align:center;
+    padding:20px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:35px;
+}
+
+.hero p{
+    font-size:16px;
+}
+
 }
 </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Artificial Intelligence</h1>
+<nav>
+    <h2>EduLearn</h2>
 
-    <p>Learn AI, Machine Learning and modern intelligent systems.</p>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="dashboard.html">Dashboard</a>
+    </div>
+</nav>
 
-    <h2>Topics Covered</h2>
-    <ul>
-        <li>Introduction to AI</li>
-        <li>Machine Learning</li>
-        <li>Deep Learning</li>
-        <li>Neural Networks</li>
-        <li>Computer Vision</li>
-        <li>Generative AI</li>
-    </ul>
+<section class="hero">
 
-    <h2>Course Duration</h2>
-    <p>14 Weeks</p>
+    <h1>Learn AI & Machine Learning</h1>
 
-    <h2>Certificate</h2>
-    <p>Certificate provided after successful completion.</p>
+    <p>
+        Build intelligent systems, future-proof your career, and master the technologies
+        shaping the future. Learn Artificial Intelligence, Machine Learning,
+        Deep Learning, Neural Networks, and Generative AI through hands-on projects.
+    </p>
 
-    <a href="register.html" class="btn">Enroll Now</a>
-</div>
+    <a href="register.html" class="btn">
+        Register
+    </a>
+
+    <a href="#careers" class="btn">
+        View Career Paths
+    </a>
+
+</section>
+
+<section class="section">
+
+    <h2>What is AI & Machine Learning?</h2>
+
+    <div class="card">
+        <p>
+            Artificial Intelligence (AI) enables computers to analyze information,
+            recognize patterns, and perform tasks that normally require human intelligence.
+            Machine Learning (ML) is a branch of AI where systems learn from data
+            to make predictions and decisions automatically.
+        </p>
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2>Why Learn AI & ML?</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>💰 High-Paying Careers</h3>
+            <p>AI professionals are among the highest-paid technology specialists.</p>
+        </div>
+
+        <div class="card">
+            <h3>🚀 Future-Proof Skills</h3>
+            <p>AI is transforming industries worldwide and creating new opportunities.</p>
+        </div>
+
+        <div class="card">
+            <h3>🏢 Top Employer Demand</h3>
+            <p>Companies increasingly seek AI and Machine Learning expertise.</p>
+        </div>
+
+        <div class="card">
+            <h3>🌍 Industry-Wide Impact</h3>
+            <p>Healthcare, Finance, Robotics, Cybersecurity, and Business all use AI.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2>What You'll Learn</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>🤖 AI Fundamentals</h3>
+            <p>Deep Learning, Neural Networks, and Generative AI concepts.</p>
+        </div>
+
+        <div class="card">
+            <h3>📊 Machine Learning</h3>
+            <p>Regression, Classification, Clustering, and Model Evaluation.</p>
+        </div>
+
+        <div class="card">
+            <h3>🧠 Deep Learning</h3>
+            <p>Perceptrons, Neural Networks, Activation Functions, and Training.</p>
+        </div>
+
+        <div class="card">
+            <h3>💬 Large Language Models</h3>
+            <p>Transformers, Tokens, Text Generation, and Modern AI Systems.</p>
+        </div>
+
+        <div class="card">
+            <h3>☁ AI Deployment</h3>
+            <p>Deploy, monitor, and improve production AI applications.</p>
+        </div>
+
+        <div class="card">
+            <h3>🛠 Real Projects</h3>
+            <p>Build chatbots, image classifiers, prediction models, and AI apps.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2>AI & ML Applications</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>📈 Data Science & Analytics</h3>
+        </div>
+
+        <div class="card">
+            <h3>🏥 Healthcare</h3>
+            <p>Diagnosis support and patient data analysis.</p>
+        </div>
+
+        <div class="card">
+            <h3>💼 Business</h3>
+            <p>Chatbots, recommendation systems, and marketing optimization.</p>
+        </div>
+
+        <div class="card">
+            <h3>💳 Finance</h3>
+            <p>Fraud detection and market prediction.</p>
+        </div>
+
+        <div class="card">
+            <h3>🔒 Cybersecurity</h3>
+        </div>
+
+        <div class="card">
+            <h3>🤖 Robotics</h3>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="careers" class="section">
+
+    <h2>Career Paths & Salaries</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Data Scientist</h3>
+            <p>$105,990+ per year</p>
+        </div>
+
+        <div class="card">
+            <h3>Machine Learning Engineer</h3>
+            <p>$120,000+ per year</p>
+        </div>
+
+        <div class="card">
+            <h3>AI Research Scientist</h3>
+            <p>$130,000+ per year</p>
+        </div>
+
+        <div class="card">
+            <h3>Computer Systems Analyst</h3>
+            <p>$103,790+ per year</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="testimonial">
+
+        <p>
+            "I completed the AI course in 8 months and now work as a Machine Learning Engineer!"
+        </p>
+
+        <h3 style="margin-top:15px;">
+            — Amit K.
+        </h3>
+
+    </div>
+
+</section>
+
+<section class="cta">
+
+    <h2>Start Your AI Journey Today</h2>
+
+    <p style="margin-top:15px;">
+        Join the next generation of AI professionals and build the future with intelligent systems.
+    </p>
+
+    <a href="courses.html" class="btn">
+        Explore AI & ML Courses
+    </a>
+
+    <a href="register.html" class="btn">
+        Enroll Now
+    </a>
+
+</section>
+
+<footer>
+    <p>© 2026 EduLearn | Artificial Intelligence Learning Portal</p>
+</footer>
 
 </body>
 </html>
